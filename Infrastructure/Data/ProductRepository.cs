@@ -1,4 +1,3 @@
-using System;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,9 @@ public class ProductRepository(StoreContext context) : IProductRepository
 
     public async Task<IReadOnlyList<string>> GetBrandsAsync()
     {
-        return await context.Products.Select(x => x.Brand).Distinct().ToListAsync();
+        return await context.Products.Select(x => x.Brand)
+        .Distinct()
+        .ToListAsync();
     }
 
     public async Task<Product?> GetProductByIdAsync(int id)
@@ -48,7 +49,9 @@ public class ProductRepository(StoreContext context) : IProductRepository
 
     public async Task<IReadOnlyList<string>> GetTypesAsync()
     {
-        return await context.Products.Select(x => x.Type).Distinct().ToListAsync();
+        return await context.Products.Select(x => x.Type)
+        .Distinct()
+        .ToListAsync();
     }
 
     public bool ProductExists(int id)
